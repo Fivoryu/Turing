@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/04/25 13:28:04.000.894,=D:\carlo rodrigoD\Documentos\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/04/25 13:28:05.000.054,=D:\carlo rodrigoD\Documentos\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2024/05/11 16:36:21.000.200,=D:\carlo rodrigoD\Documentos\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/05/11 16:36:21.000.293,=D:\carlo rodrigoD\Documentos\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2024/05/11 16:40:50.000.772,=D:\carlo rodrigoD\Documentos\Embarcadero\Studio\Projects\Unit2.cpp</Transaction>
+    <Transaction>2024/05/11 16:46:39.000.035,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit1.cpp=D:\carlo rodrigoD\Documentos\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2024/05/11 16:46:39.000.087,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit2.h=D:\carlo rodrigoD\Documentos\Embarcadero\Studio\Projects\Unit2.h</Transaction>
+    <Transaction>2024/05/11 16:46:39.000.087,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit2.dfm=D:\carlo rodrigoD\Documentos\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2024/05/11 16:46:39.000.035,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit1.h=D:\carlo rodrigoD\Documentos\Embarcadero\Studio\Projects\Unit1.h</Transaction>
+    <Transaction>2024/05/11 16:46:39.000.107,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Project1.cbproj=D:\carlo rodrigoD\Documentos\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>2024/05/11 16:46:39.000.007,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Project1PCH1.h=D:\carlo rodrigoD\Documentos\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/05/11 16:46:39.000.035,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit1.dfm=D:\carlo rodrigoD\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2024/05/11 16:46:39.000.087,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit2.cpp=D:\carlo rodrigoD\Documentos\Embarcadero\Studio\Projects\Unit2.cpp</Transaction>
+    <Transaction>2024/05/11 17:00:45.000.648,=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit3.cpp</Transaction>
+    <Transaction>2024/05/11 17:04:26.000.987,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\fomulario_de_la_interfaz1.cpp=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit1.cpp</Transaction>
+    <Transaction>2024/05/11 17:04:26.000.987,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\fomulario_de_la_interfaz1.dfm=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit1.dfm</Transaction>
+    <Transaction>2024/05/11 17:04:26.000.987,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\fomulario_de_la_interfaz1.h=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit1.h</Transaction>
+    <Transaction>2024/05/11 17:05:47.000.365,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\formulario_de_la_interfaz2.cpp=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit2.cpp</Transaction>
+    <Transaction>2024/05/11 17:05:47.000.365,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\formulario_de_la_interfaz2.h=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit2.h</Transaction>
+    <Transaction>2024/05/11 17:05:47.000.365,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\formulario_de_la_interfaz2.dfm=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit2.dfm</Transaction>
+    <Transaction>2024/05/11 17:06:11.000.469,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\formulario_de_la_matriz.dfm=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit3.dfm</Transaction>
+    <Transaction>2024/05/11 17:06:11.000.469,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\formulario_de_la_matriz.cpp=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit3.cpp</Transaction>
+    <Transaction>2024/05/11 17:06:11.000.469,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\formulario_de_la_matriz.h=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit3.h</Transaction>
+    <Transaction>2024/05/11 18:17:00.000.733,=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit1.cpp</Transaction>
+    <Transaction>2024/05/11 18:17:24.000.397,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\turing.h=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit1.h</Transaction>
+    <Transaction>2024/05/11 18:17:24.000.397,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\turing.cpp=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit1.cpp</Transaction>
+    <Transaction>2024/05/11 19:13:30.000.092,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\clase turing\turing.h=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\turing.h</Transaction>
+    <Transaction>2024/05/11 19:13:30.000.092,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\clase turing\turing.cpp=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\turing.cpp</Transaction>
+    <Transaction>2024/05/13 22:12:22.000.975,=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit1.cpp</Transaction>
+    <Transaction>2024/05/13 22:13:34.000.737,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit1.h=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\turing.h</Transaction>
+    <Transaction>2024/05/13 22:13:34.000.737,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit1.cpp=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\turing.cpp</Transaction>
+    <Transaction>2024/05/13 22:16:58.000.109,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\turing.h=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\nueva clase\turing.h</Transaction>
+    <Transaction>2024/05/13 22:16:58.000.109,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\turing.cpp=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\nueva clase\turing.cpp</Transaction>
+    <Transaction>2024/05/13 23:49:53.000.111,=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit1.cpp</Transaction>
+    <Transaction>2024/05/13 23:50:03.000.024,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit1.h=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\global.h</Transaction>
+    <Transaction>2024/05/13 23:50:03.000.024,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\Unit1.cpp=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\global.cpp</Transaction>
+    <Transaction>2024/05/13 23:51:58.000.752,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\global.cpp=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\clase turing\global.cpp</Transaction>
+    <Transaction>2024/05/13 23:51:58.000.752,D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\global.h=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\clase turing\global.h</Transaction>
+    <Transaction>2024/05/13 23:57:00.000.323,=D:\carlo rodrigoD\Escritorio\c++ builder 11\buton\nueva clase\global.cpp</Transaction>
+  </Transactions>
+</BorlandProject>

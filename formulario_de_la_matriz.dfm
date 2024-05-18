@@ -1,0 +1,28 @@
+object Form3: TForm3
+  Left = 340
+  Top = 100
+  Caption = 'Form3'
+  ClientHeight = 574
+  ClientWidth = 988
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poDesigned
+  TextHeight = 15
+  object Label1: TLabel
+    Left = 288
+    Top = 40
+    Width = 129
+    Height = 45
+    Caption = 'MATRIZ'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -33
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+  end
+end
