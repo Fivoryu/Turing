@@ -33,6 +33,11 @@ __published:	// IDE-managed Components
 	TEdit *Edit5;
 	TEdit *Edit6;
 	TLabel *Label1;
+	TComboBox *ComboBox1;
+	TComboBox *ComboBox2;
+	TComboBox *ComboBox3;
+	TComboBox *ComboBox4;
+	TComboBox *ComboBox5;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button4Click(TObject *Sender);
@@ -42,6 +47,11 @@ __published:	// IDE-managed Components
 	void __fastcall Button7Click(TObject *Sender);
 	void __fastcall Button8Click(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall ComboBox1Change(TObject *Sender);
+	void __fastcall ComoBox2Change(TObject *Sender);
+	void __fastcall ComboBox3Change(TObject *Sender);
+	void __fastcall ComboBox4Change(TObject *Sender);
+	void __fastcall ComboBox5Change(TObject *Sender);
 private:
 	// User declarations
     Transiciones t;

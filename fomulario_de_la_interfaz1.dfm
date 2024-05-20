@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 340
   Top = 100
   Caption = 'Form1'
-  ClientHeight = 668
-  ClientWidth = 1033
+  ClientHeight = 667
+  ClientWidth = 1029
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -135,5 +135,45 @@ object Form1: TForm1
     Height = 23
     TabOrder = 13
     Text = 'Edit6'
+  end
+  object ComboBox1: TComboBox
+    Left = 732
+    Top = 136
+    Width = 37
+    Height = 23
+    TabOrder = 14
+    OnEnter = ComboBox1Change
+  end
+  object ComboBox2: TComboBox
+    Left = 775
+    Top = 136
+    Width = 37
+    Height = 23
+    TabOrder = 15
+    OnEnter = ComoBox2Change
+  end
+  object ComboBox3: TComboBox
+    Left = 818
+    Top = 136
+    Width = 37
+    Height = 23
+    TabOrder = 16
+    OnEnter = ComboBox3Change
+  end
+  object ComboBox4: TComboBox
+    Left = 861
+    Top = 136
+    Width = 37
+    Height = 23
+    TabOrder = 17
+    OnEnter = ComboBox4Change
+  end
+  object ComboBox5: TComboBox
+    Left = 908
+    Top = 136
+    Width = 37
+    Height = 23
+    TabOrder = 18
+    OnEnter = ComboBox5Change
   end
 end

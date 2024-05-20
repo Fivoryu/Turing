@@ -33,10 +33,14 @@ class Transiciones
 public:
 	Transiciones();
 	void SetEstado(char estado);
+	char GetEstado(int pos);
 	void SetSimbolo(char simbolo);
+	char GetSimbolo(int pos);
 	void SetEndInstr(char end) { EndInstruction = end; }
 	char GetEndInstr() { return EndInstruction; }
 	void SetTransicion(char estado, char simbolo, char nextestado, char nextsimbolo, char instruccion);
+	int GetMaxePos() { return epos; }
+	int GetMaxsPos() {return spos; }
 	int SearchPosE(char estado);
 	int SearchPosS(char simbolo);
 	Trans GetTransicion(char estado, char simbolo);

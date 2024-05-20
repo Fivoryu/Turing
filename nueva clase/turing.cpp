@@ -19,11 +19,25 @@ void Transiciones::SetEstado(char estado)
 	Estado[epos] = estado;
 	epos++;
 }
+
+char Transiciones::GetEstado(int pos)
+{
+	if (pos >= 0 && pos < epos)
+		return Estado[pos];
+}
+
 void Transiciones::SetSimbolo(char simbolo)
 {
 	Simbolo[spos] = simbolo;
 	spos++;
 }
+
+char Transiciones::GetSimbolo(int pos)
+{
+	if (pos >= 0 && pos < spos)
+		return Simbolo[pos];
+}
+
 void Transiciones::SetTransicion(char estado, char simbolo, char nextestado, char nextsimbolo, char instruccion)
 {
 	int PosE = SearchPosE(estado);

@@ -69,13 +69,22 @@ t.Turing( cinta,  entrada,ini,  poseini);
 
 void __fastcall TForm1::Button6Click(TObject *Sender)
 {
-AnsiString e=Edit3->Text;
-std::string auxi=e.c_str();
- eliminarComasEspacios(auxi);
-t.SetTransicion(auxi[0], auxi[1],auxi[2], auxi[3], auxi[4]);
+	//AnsiString e=Edit3->Text;
+	//std::string auxi=e.c_str();
+	//eliminarComasEspacios(auxi);
+	//t.SetTransicion(auxi[0], auxi[1],auxi[2], auxi[3], auxi[4]);
 
-
-
+	AnsiString e = ComboBox1->Text;
+	AnsiString s = ComboBox2->Text;
+	AnsiString ne = ComboBox3->Text;
+	AnsiString ns = ComboBox4->Text;
+	AnsiString i = ComboBox5->Text;
+	t.SetTransicion(e[1], s[1], ne[1], ns[1], i[1]);
+	ComboBox1->Text = "";
+	ComboBox2->Text = "";
+	ComboBox3->Text = "";
+	ComboBox4->Text = "";
+	ComboBox5->Text = "";
 }
 //---------------------------------------------------------------------------
 
@@ -117,5 +126,61 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 	Form1->Canvas->LineTo(350,650)  ;
 	Form1->Canvas->LineTo(650,350);
 }
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm1::ComboBox1Change(TObject *Sender)
+{
+	ComboBox1->Clear();
+	for (int i = 0; i < t.GetMaxePos(); i++)
+	{
+		AnsiString s = t.GetEstado(i);
+		ComboBox1->AddItem(s,NULL);
+	}
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::ComoBox2Change(TObject *Sender)
+{
+	ComboBox2->Clear();
+	for (int i = 0; i < t.GetMaxsPos(); i++)
+	{
+		AnsiString s = t.GetSimbolo(i);
+		ComboBox2->AddItem(s,NULL);
+	}	
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::ComboBox3Change(TObject *Sender)
+{
+	ComboBox3->Clear();
+	for (int i = 0; i < t.GetMaxePos(); i++)
+	{
+		AnsiString s = t.GetEstado(i);
+		ComboBox3->AddItem(s,NULL);
+	}	
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::ComboBox4Change(TObject *Sender)
+{
+	ComboBox4->Clear();
+	for (int i = 0; i < t.GetMaxsPos(); i++)
+	{
+		AnsiString s = t.GetSimbolo(i);
+		ComboBox4->AddItem(s,NULL);
+	}
+}	
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::ComboBox5Change(TObject *Sender)
+{
+	ComboBox5->Clear();
+	ComboBox5->AddItem("L",NULL);
+	ComboBox5->AddItem("R",NULL);
+	ComboBox5->AddItem("H",NULL);	
+}	
 //---------------------------------------------------------------------------
 
