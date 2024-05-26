@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 340
   Top = 100
   Caption = 'Form1'
-  ClientHeight = 667
-  ClientWidth = 1029
+  ClientHeight = 666
+  ClientWidth = 1025
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,7 +12,6 @@ object Form1: TForm1
   Font.Style = []
   Position = poDesigned
   OnCreate = FormCreate
-  OnPaint = FormCreate
   TextHeight = 15
   object Label1: TLabel
     Left = 384

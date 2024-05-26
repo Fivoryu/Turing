@@ -1,0 +1,35 @@
+//---------------------------------------------------------------------------
+
+#ifndef ListaSMH
+#define ListaSMH
+//---------------------------------------------------------------------------
+
+#include "Memory.h"
+#include <iostream>
+#include <string>
+
+class ListaSM
+{
+private:
+	char PtrElementos;
+	int Length;
+public:
+	void Crear();
+	char Fin();
+	char Primero();
+	char Siguiente(char dir);
+	char Anterior(char dir);
+	bool Vacia();
+	char Recupera(char dir);
+	int Longitud();
+	void Insertar(char dir, char ele);
+	void Suprime(char dir);
+	void Modifica(char dir, char ele);
+	void Mostrar(TCanvas* canvas);
+	/////////////////////////////////////////////////
+	char Localizar(char ele);
+	void EliminarDato(char ele);
+	void Anular();
+};
+
+#endif

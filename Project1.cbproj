@@ -65,8 +65,8 @@
         <UWP_CppLogo44>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_44.png</UWP_CppLogo44>
         <UWP_CppLogo150>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_150.png</UWP_CppLogo150>
         <SanitizedProjectName>Project1</SanitizedProjectName>
-        <IncludePath>nueva clase\;clase turing\;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>nueva clase\;clase turing\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>Estructura_de_Datos\;nueva clase\;clase turing\;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>Estructura_de_Datos\;nueva clase\;clase turing\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <PackageImports>adortl;appanalytics;bcbie;bcbsmp;bindcomp;bindcompdbx;bindcompfmx;bindcompvcl;bindcompvclsmp;bindcompvclwinx;bindengine;CloudService;CustomIPTransport;dbexpress;dbrtl;dbxcds;DbxClientDriver;DbxCommonDriver;DBXInterBaseDriver;DBXMySQLDriver;DBXSqliteDriver;dsnap;dsnapcon;dsnapxml;FireDAC;FireDACADSDriver;FireDACCommon;FireDACCommonDriver;FireDACCommonODBC;FireDACIBDriver;FireDACMSAccDriver;FireDACMySQLDriver;FireDACPgDriver;FireDACSqliteDriver;fmx;fmxase;fmxdae;fmxFireDAC;fmxobj;IndyCore;IndyIPClient;IndyIPCommon;IndyIPServer;IndyProtocols;IndySystem;inet;inetdb;inetdbxpress;RESTBackendComponents;RESTComponents;rtl;soapmidas;soaprtl;soapserver;tethering;vcl;vclactnband;vcldb;vcldsnap;vcledge;vclFireDAC;vclie;vclimg;VCLRESTComponents;VclSmp;vcltouch;vclwinx;vclx;xmlrtl;$(PackageImports)</PackageImports>
@@ -123,12 +123,29 @@
     <ItemGroup>
         <CppCompile Include="clase turing\global.cpp">
             <DependentOn>clase turing\global.h</DependentOn>
+            <Suffix>_0</Suffix>
             <BuildOrder>7</BuildOrder>
         </CppCompile>
         <CppCompile Include="clase turing\turing.cpp">
             <DependentOn>clase turing\turing.h</DependentOn>
             <Suffix>_0</Suffix>
             <BuildOrder>5</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Estructura_de_Datos\Const.cpp">
+            <DependentOn>Estructura_de_Datos\Const.h</DependentOn>
+            <BuildOrder>12</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Estructura_de_Datos\ListaSM.cpp">
+            <DependentOn>Estructura_de_Datos\ListaSM.h</DependentOn>
+            <BuildOrder>9</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Estructura_de_Datos\MatrizCooTrans.cpp">
+            <DependentOn>Estructura_de_Datos\MatrizCooTrans.h</DependentOn>
+            <BuildOrder>10</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Estructura_de_Datos\Memory.cpp">
+            <DependentOn>Estructura_de_Datos\Memory.h</DependentOn>
+            <BuildOrder>11</BuildOrder>
         </CppCompile>
         <CppCompile Include="fomulario_de_la_interfaz1.cpp">
             <Form>Form1</Form>
@@ -150,7 +167,6 @@
         </CppCompile>
         <CppCompile Include="nueva clase\global.cpp">
             <DependentOn>nueva clase\global.h</DependentOn>
-            <Suffix>_0</Suffix>
             <BuildOrder>8</BuildOrder>
         </CppCompile>
         <CppCompile Include="nueva clase\turing.cpp">
@@ -165,8 +181,8 @@
             <PCH>true</PCH>
         </PCHCompile>
         <FormResources Include="formulario_de_la_matriz.dfm"/>
-        <FormResources Include="fomulario_de_la_interfaz1.dfm"/>
         <FormResources Include="formulario_de_la_interfaz2.dfm"/>
+        <FormResources Include="fomulario_de_la_interfaz1.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -193,6 +209,8 @@
                 <Source>
                     <Source Name="MainSource">Project1.cpp</Source>
                 </Source>
+                <Folders/>
+                <VFOLDERS/>
             </CPlusPlusBuilder.Personality>
             <Deployment Version="4">
                 <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx32\libcgcrtl.dylib" Class="DependencyModule">

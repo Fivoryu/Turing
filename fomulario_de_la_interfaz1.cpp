@@ -8,6 +8,8 @@
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TForm1 *Form1;
+CSMemoria csMemoria;
+
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
 	: TForm(Owner)
@@ -121,6 +123,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 	Form1->Canvas->Pen->Color=clBackground;
 	Form1->Canvas->Pen->Width=2;
 	// Form1->Canvas->MoveTo(250,100);
+    csMemoria.Crear();
 	Form1->Canvas->LineTo(350,350);
 
 	Form1->Canvas->LineTo(350,650)  ;

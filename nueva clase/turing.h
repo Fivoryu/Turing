@@ -4,30 +4,11 @@
 #define turingH
 //#include <list>
 #include <iostream>
-//---------------------------------------------------------------------------
-const int MAX = 100;
 
-struct Trans
-{
-	char Estado;
-	char Simbolo;
-	char Nextestado;
-	char Nextsimbolo;
-	char Instruccion;
-	Trans()
-	{
-		Estado = Simbolo = Nextestado = ' ';
-		Instruccion = 'H';
-    }
-	Trans(char estado, char simbolo, char nextestado, char nextsimbolo, char instruccion)
-	{
-		Estado = estado;
-		Nextestado = nextestado;
-		Simbolo = simbolo;
-		Nextsimbolo = nextsimbolo;
-		Instruccion = instruccion;
-	}
-};
+#include "Const.h"
+#include "Estructura_de_Datos/MatrizCooTrans.h"
+#include "Estructura_de_Datos/ListaSM.h"
+//---------------------------------------------------------------------------
 class Transiciones
 {
 public:
@@ -46,12 +27,12 @@ public:
 	Trans GetTransicion(char estado, char simbolo);
 	void Turing(std::string& cinta, std::string& entrada, int& pos, int& pose);
 private:
-	char Estado[MAX];
+	ListaSM Estado;
 	char epos;
-	char Simbolo[MAX];
+	ListaSM Simbolo;
 	char Instruction[MAX];
 	char spos;
 	char EndInstruction = '$';
-	Trans trans[MAX][MAX];
+	MatrizDispersaTrans trans;
 };
 #endif
