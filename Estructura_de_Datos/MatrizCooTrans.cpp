@@ -28,6 +28,30 @@ void MatrizDispersaTrans::Dimensionar(int nf, int nc)
 	Dc = nc;
 }
 
+void MatrizDispersaTrans::DimensionarFila(int nf)
+{
+	if ((nf >= 0) && (nf <= Df))
+	{
+		for (int i = nf; i < NT; i++)
+		{
+			if (Vf[i] >= nf)
+				Vf[i]--;
+		}
+	}
+}
+
+void MatrizDispersaTrans::DimensionarColumna(int nc)
+{
+	if ((nc >= 0) && (nc <= Dc))
+	{
+		for (int i = nc; i < NT; i++)
+		{
+			if (Vc[i] >= nc)
+				Vc[i]--;
+		}
+	}
+}
+
 int MatrizDispersaTrans::Dimension_Fila()
 {
 	return Df;
@@ -47,7 +71,7 @@ void MatrizDispersaTrans::Poner(int f, int c, Trans valor)
 		{
 			Vd[NT] = valor;
 			Vf[NT] = f;
-			Vf[NT] = c;
+			Vc[NT] = c;
 			NT++;
 		}
 		else
@@ -65,8 +89,52 @@ void MatrizDispersaTrans::Poner(int f, int c, Trans valor)
             }
         }
 
-    }
+	}
 }
+
+void MatrizDispersaTrans::Eliminar(int f, int c, Trans valor)
+{
+	if ((f >= 0) && (f <= Df) && (c >= 0) && (c <= Dc))
+	{
+		int Lug = Posicion(f, c);
+		if (Lug >= 0)
+		{
+			for (int i = Lug; i < NT; i++)
+			{
+				Vf[i] = Vf[i + 1];
+				Vc[i] = Vc[i + 1];
+				Vd[i] = Vd[i + 1];
+			}
+			NT--;
+		}
+	}
+}
+
+void MatrizDispersaTrans::EliminarEstado(char estado)
+{
+	for (int i = 0; i < NT; i++)
+	{
+		if (Vd[i].Estado == estado || Vd[i].Nextestado == estado)
+		{
+			Eliminar(Vf[i], Vc[i], Vd[i]);
+            i--;
+		}
+	}
+}
+
+
+void MatrizDispersaTrans::EliminarSimbolo(char simbolo)
+{
+    for (int i = 0; i < NT; i++)
+	{
+		if (Vd[i].Simbolo == simbolo || Vd[i].Nextsimbolo == simbolo)
+		{
+			Eliminar(Vf[i], Vc[i], Vd[i]);
+			i--;
+		}
+	}
+}
+
 
 Trans MatrizDispersaTrans::Tipo_Elemento(int f, int c)
 {

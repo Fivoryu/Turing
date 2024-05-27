@@ -48,9 +48,14 @@ public:
 	void Crear();
 	int Posicion(int f, int c);
 	void Dimensionar(int nf, int nc);
+	void DimensionarFila(int nf);
+	void DimensionarColumna(int nc);
 	int Dimension_Fila();
 	int Dimension_Columna();
 	void Poner(int f, int c, Trans valor);
+	void Eliminar(int f, int c, Trans valor);
+	void EliminarEstado(char estado);
+	void EliminarSimbolo(char simbolo);
 	Trans Tipo_Elemento(int f, int c);
 	void Definir_Valor_Repetido(Trans valor);
 private:

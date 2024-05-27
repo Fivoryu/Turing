@@ -1,0 +1,284 @@
+//---------------------------------------------------------------------------
+
+#pragma hdrstop
+
+#include "turing.h"
+
+#include <fstream>
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+
+void eliminarComasEspacios(std::string& cadena)
+{
+	// Eliminar los espacios usando la función erase y remove_if
+	cadena.erase(std::remove_if(cadena.begin(), cadena.end(), [](char c) { return std::isspace(c); }), cadena.end());
+
+	// Eliminar las comas
+	cadena.erase(std::remove(cadena.begin(), cadena.end(), ','), cadena.end());
+}
+
+
+Transiciones::Transiciones()
+{
+	epos = 0;   spos = 0;
+	Estado.Crear();
+	Simbolo.Crear();
+	trans.Crear();
+}
+void Transiciones::SetEstado(char estado)
+{
+	if (Estado.Vacia())
+		Estado.Insertar(Estado.Primero(), estado);
+	else
+		Estado.Insertar(Estado.Fin(), estado);
+	epos++;
+	trans.Dimensionar(epos, spos);
+}
+
+char Transiciones::GetEstado(int pos)
+{
+	if (pos >= 0 && pos < epos)
+	{
+		char aux = Estado.Primero();
+		int i = 0;
+		while ((Estado.Recupera(aux) != ' ') && (i < pos))
+		{
+			aux = Estado.Siguiente(aux);
+			i++;
+		}
+		return Estado.Recupera(aux);
+	}
+	return ' ';
+}
+
+void Transiciones::DeleteEstado(char estado)
+{
+	int pos = SearchPosE(estado);
+	if (pos >= 0)
+	{
+		trans.DimensionarFila(pos);
+		trans.EliminarEstado(estado);
+		Estado.EliminarDato(estado);
+		epos--;
+		trans.Dimensionar(epos, spos);	
+	}
+}
+
+void Transiciones::SetSimbolo(char simbolo)
+{
+	if (Simbolo.Vacia())
+		Simbolo.Insertar(Simbolo.Primero(), simbolo);
+	else
+		Simbolo.Insertar(Simbolo.Fin(), simbolo);
+	spos++;
+    trans.Dimensionar(epos, spos);
+}
+
+char Transiciones::GetSimbolo(int pos)
+{
+	if (pos >= 0 && pos < spos)
+	{
+		char aux = Simbolo.Primero();
+		int i = 0;
+		while ((Simbolo.Recupera(aux) != ' ') && (i < pos))
+		{
+			aux = Simbolo.Siguiente(aux);
+			i++;
+		}
+		return Simbolo.Recupera(aux);
+	}
+	return ' ';
+}
+
+void Transiciones::DeleteSimbolo(char simbolo)
+{
+	int pos = SearchPosS(simbolo);
+	if (pos >= 0)
+	{
+		trans.DimensionarColumna(pos);
+		trans.EliminarSimbolo(simbolo);
+		Simbolo.EliminarDato(simbolo);
+		spos--;
+		trans.Dimensionar(epos, spos);	
+	}
+}
+
+void Transiciones::SetTransicion(char estado, char simbolo, char nextestado, char nextsimbolo, char instruccion)
+{
+	int PosE = SearchPosE(estado);
+	int PosS = SearchPosS(simbolo);
+	Trans T = Trans(estado, simbolo, nextestado, nextsimbolo, instruccion);
+	trans.Poner(PosE, PosS, T);
+}
+
+void Transiciones::DeleteTransicion(char estado, char simbolo, char nextestado, char nextsimbolo, char instruccion)
+{
+	int PosE = SearchPosE(estado);
+	int PosS = SearchPosS(simbolo);
+	Trans T = Trans(estado, simbolo, nextestado, nextsimbolo, instruccion);
+	trans.Eliminar(PosE, PosS, T);
+}
+
+
+int Transiciones::SearchPosE(char estado)
+{
+	int aux = Estado.Primero();
+	int i = 0;
+	while (aux != -1)
+	{
+		if (Estado.Recupera(aux) == estado)
+			return i;
+		aux = Estado.Siguiente(aux);
+		i++;
+	}
+	return -1;
+}
+int Transiciones::SearchPosS(char simbolo)
+{
+	char aux = Simbolo.Primero();
+	int i = 0;
+	while (aux != -1)
+	{
+		if (Simbolo.Recupera(aux) == simbolo)
+			return i;
+		aux = Simbolo.Siguiente(aux);
+		i++;
+	}
+	return -1;
+}
+Trans Transiciones::GetTransicion(char estado, char simbolo)
+{
+	int PosE = SearchPosE(estado);
+	int PosS = SearchPosS(simbolo);
+	if (PosE == -1 && PosS == -1)
+	{
+		Trans t;
+		return t;
+    }
+
+	return trans.Tipo_Elemento(PosE, PosS);
+}
+
+// "$$$$$011011$$$$$"
+//  012345
+void Transiciones::Turing(std::string& cinta, std::string& entrada, int& pos, int& pose)
+{
+	char simbolo = cinta[pos];									// simbolo recoje el quinto elemento de la cinta, es decir el primer elemento de la entrada
+	Trans tm = GetTransicion(GetEstado(pose),simbolo);				// recoje exactamente la transicion necesaria para realizar las operaciones
+	if (tm.Nextestado == ' ')
+		return;		// En caso que el siguiente estado esta vacio, retorna la funcion
+	if (tm.Instruccion != 'H')
+	{
+		cinta[pos] = tm.Nextsimbolo;
+		if (tm.Instruccion == 'R')
+			pos++;
+		else if (tm.Instruccion	== 'L')
+			pos--;
+		char nextestado = tm.Nextestado;
+		pose = SearchPosE(nextestado);
+	}
+}
+
+
+void Transiciones::Save(TSaveTextFileDialog* save)
+{
+	std::string file;
+	if (save->Execute())
+	{
+		String filename = save->FileName;
+		AnsiString aux = filename.c_str();
+		file = aux.c_str();
+	}
+
+	fstream f(file.c_str(), ios::out);
+	if (!f.fail())
+	{
+		int i = 0;
+		std::string cad = "";
+		while (i < epos)
+		{
+			cad.push_back(GetEstado(i));	
+			cad += ",";	
+			i++;
+		}
+		cad.pop_back();
+
+		f << cad;
+		cad = "";
+		
+		f.put(0x0A);
+		
+		i = 0;
+		while (i < spos)
+		{
+			cad.push_back(GetSimbolo(i));	
+			cad += ",";	
+			i++;
+		}
+		cad.pop_back();
+		f << cad;
+		
+		f.put(0x0A);
+		
+		for (i = 0; i < epos; i++)
+			for (int j = 0; j < spos; j++)
+			{
+				Trans t = GetTransicion(GetEstado(i), GetSimbolo(j));
+				if (t.Nextestado != ' ')
+				{	
+					f.put(t.Estado);
+					f.put(',');
+					f.put(t.Simbolo);
+					f.put(',');
+					f.put(t.Nextestado);
+					f.put(',');
+					f.put(t.Nextsimbolo);
+					f.put(',');
+					f.put(t.Instruccion);
+					f.put(0x0A);
+				}
+            }
+    }
+}
+
+void Transiciones::Load(TOpenTextFileDialog* open)
+{
+	std::string file;
+	if (open->Execute())
+	{
+		String filename = open->FileName;
+		AnsiString aux = filename.c_str();
+		file = aux.c_str();
+	}
+	Transiciones();
+	
+	ifstream f(file.c_str(), ios::in);
+	if (!f.fail())
+	{
+		std::string linea;
+		std::getline(f,linea);
+		eliminarComasEspacios(linea);
+		while (linea.length() > 0)
+		{
+			SetEstado(linea[0]);
+			linea.erase(0,1);	
+		}
+		
+		std::getline(f,linea);
+		eliminarComasEspacios(linea);
+		while (linea.length() > 0)
+		{
+			SetSimbolo(linea[0]);
+			linea.erase(0,1);	
+		}
+
+		while (std::getline(f,linea))
+		{
+			eliminarComasEspacios(linea);
+			if (linea.length() > 0)
+			{	
+                SetTransicion(linea[0], linea[1], linea[2], linea[3], linea[4]);
+            }
+        }
+	}
+}

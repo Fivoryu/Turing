@@ -4,6 +4,7 @@
 #pragma hdrstop
 
 #include "fomulario_de_la_interfaz1.h"
+
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -38,20 +39,19 @@ form3->Show();
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button4Click(TObject *Sender)
 {
- AnsiString e=Edit1->Text;
- std::string au=e.c_str();
- t.SetEstado(au[0]);
- Edit1->Text="";
+	AnsiString e = Edit1->Text;
+	std::string au = e.c_str();
+	t.SetEstado(au[0]);
+	Edit1->Text = "";
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::Button5Click(TObject *Sender)
 {
-
- AnsiString e=Edit2->Text;
- std::string au=e.c_str();
-t.SetSimbolo(au[0]);
-Edit2->Text="";
+	AnsiString e = Edit2->Text;
+	std::string au = e.c_str();
+	t.SetSimbolo(au[0]);
+	Edit2->Text = "";
 }
 //---------------------------------------------------------------------------
 
@@ -61,13 +61,7 @@ t.Turing( cinta,  entrada,ini,  poseini);
  Edit6->Text=cinta.c_str();//no hace  nada   ok
 }
 //---------------------------------------------------------------------------
- void eliminarComasEspacios(std::string& cadena) {
-	// Eliminar los espacios usando la función erase y remove_if
-	cadena.erase(std::remove_if(cadena.begin(), cadena.end(), [](char c) { return std::isspace(c); }), cadena.end());
 
-	// Eliminar las comas
-	cadena.erase(std::remove(cadena.begin(), cadena.end(), ','), cadena.end());
-}
 
 void __fastcall TForm1::Button6Click(TObject *Sender)
 {
@@ -111,25 +105,13 @@ void __fastcall TForm1::Button7Click(TObject *Sender)
 
 void __fastcall TForm1::Button8Click(TObject *Sender)
 {
-AnsiString auxi=Edit5->Text;
-std::string au=auxi.c_str();
-t.SetEndInstr(au[0]);
-Edit5->Text="";
+	AnsiString auxi=Edit5->Text;
+	std::string au=auxi.c_str();
+	t.SetEndInstr(au[0]);
+	Edit5->Text="";
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::FormCreate(TObject *Sender)
-{
-	Form1->Canvas->Pen->Color=clBackground;
-	Form1->Canvas->Pen->Width=2;
-	// Form1->Canvas->MoveTo(250,100);
-    csMemoria.Crear();
-	Form1->Canvas->LineTo(350,350);
-
-	Form1->Canvas->LineTo(350,650)  ;
-	Form1->Canvas->LineTo(650,350);
-}
-//---------------------------------------------------------------------------
 
 
 
@@ -185,5 +167,53 @@ void __fastcall TForm1::ComboBox5Change(TObject *Sender)
 	ComboBox5->AddItem("R",NULL);
 	ComboBox5->AddItem("H",NULL);	
 }	
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm1::GuardarClick(TObject *Sender)
+{
+    t.Save(SaveTextFileDialog1);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::CargarClick(TObject *Sender)
+{
+    t.Load(OpenTextFileDialog1);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::DEstadoClick(TObject *Sender)
+{
+    AnsiString e = Edit1->Text;
+	std::string au = e.c_str();
+	t.DeleteEstado(au[0]);
+	Edit1->Text = "";
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::DSimboloClick(TObject *Sender)
+{
+    AnsiString e = Edit2->Text;
+	std::string au = e.c_str();
+	t.DeleteSimbolo(au[0]);
+	Edit2->Text = "";
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::DTransicionesClick(TObject *Sender)
+{
+    AnsiString e = ComboBox1->Text;
+	AnsiString s = ComboBox2->Text;
+	AnsiString ne = ComboBox3->Text;
+	AnsiString ns = ComboBox4->Text;
+	AnsiString i = ComboBox5->Text;
+	t.DeleteTransicion(e[1], s[1], ne[1], ns[1], i[1]);
+	ComboBox1->Text = "";
+	ComboBox2->Text = "";
+	ComboBox3->Text = "";
+	ComboBox4->Text = "";
+	ComboBox5->Text = "";
+}
 //---------------------------------------------------------------------------
 

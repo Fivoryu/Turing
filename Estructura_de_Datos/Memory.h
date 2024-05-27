@@ -33,7 +33,7 @@ public:
 	void Show(TCanvas* canvas);
     void MostrarDato(int x, int y, int dir, TCanvas* canvas);
 private:
-	NodoM MEM[2 * MAX];
+	NodoM MEM[4 * MAX];
 	int Libre;
 };
 
