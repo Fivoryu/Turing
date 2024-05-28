@@ -57,8 +57,9 @@ void __fastcall TForm1::Button5Click(TObject *Sender)
 
 void __fastcall TForm1::Button3Click(TObject *Sender)
 {
-t.Turing( cinta,  entrada,ini,  poseini);
- Edit6->Text=cinta.c_str();//no hace  nada   ok
+	t.Turing( cinta,  entrada,ini,  poseini);
+	std::string cad = t.GetCinta();
+	Edit6->Text=cad.c_str();//no hace  nada   ok
 }
 //---------------------------------------------------------------------------
 
@@ -86,19 +87,22 @@ void __fastcall TForm1::Button6Click(TObject *Sender)
 
 void __fastcall TForm1::Button7Click(TObject *Sender)
 {
- cinta="";
- poseini=0;
- ini=5;
- for(int i=1;i<=10;i++)
- {
-   cinta+=t.GetEndInstr();
- }
- AnsiString aux=Edit4->Text;
- entrada=aux.c_str();
- cinta.insert(5, entrada.c_str());
- std::string u=cinta;
- Edit4->Text="";
- Edit6->Text=cinta.c_str();
+	cinta="";
+	poseini=0;
+	ini=5;
+	for(int i=1;i<=10;i++)
+	{
+		cinta+=t.GetEndInstr();
+	}
+	AnsiString aux=Edit4->Text;
+	entrada=aux.c_str();
+	t.Entrada(entrada);
+	cinta.insert(5, entrada.c_str());
+	std::string u=cinta;
+    cinta = t.GetCinta();
+	Edit4->Text="";
+
+	Edit6->Text=cinta.c_str();
 }
 //---------------------------------------------------------------------------
 

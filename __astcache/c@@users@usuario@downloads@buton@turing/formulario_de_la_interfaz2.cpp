@@ -30,15 +30,19 @@ void __fastcall TForm2::Button2Click(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TForm2::FormCreate(TObject *Sender)
 {
-    std::string c = cinta;
-  	Edit1->Text=cinta.c_str();
+	std::string c = t.GetCinta();
+	t.MostrarCinta(Canvas);
+	Edit1->Text=c.c_str();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm2::Button3Click(TObject *Sender)
 {
-t.Turing( cinta,  entrada,ini,  poseini);
- Edit1->Text=cinta.c_str();
+	t.Turing( cinta,  entrada,ini,  poseini);
+	std::string c = t.GetCinta();
+	t.MoverCinta(Canvas);
+	//t.MostrarCinta(Canvas);
+	Edit1->Text = c.c_str();
 }
 //---------------------------------------------------------------------------
 

@@ -11,6 +11,7 @@
 
 #include <Vcl.Dialogs.hpp>
 #include <Vcl.ExtDlgs.hpp>
+#include <Vcl.Graphics.hpp>
 
 
 //---------------------------------------------------------------------------
@@ -38,8 +39,17 @@ public:
 	int SearchPosS(char simbolo);
 	Trans GetTransicion(char estado, char simbolo);
 	void Turing(std::string& cinta, std::string& entrada, int& pos, int& pose);
+	void Entrada(std::string entrada);
+	void MostrarCinta(TCanvas* canvas);
+	void MoverCinta(TCanvas* canvas);
 	void Save(TSaveTextFileDialog* file);
 	void Load(TOpenTextFileDialog* file);
+public:
+    std::string GetCinta() { return Cinta; }
+private:
+	std::string Cinta;
+	int Pos = 10;
+	int Pose = 0;
 private:
 	ListaSM Estado;
 	char epos;

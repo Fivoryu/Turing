@@ -11,6 +11,7 @@ object Form2: TForm2
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poDesigned
+  OnPaint = FormCreate
   OnShow = FormCreate
   TextHeight = 15
   object Label1: TLabel

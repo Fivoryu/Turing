@@ -166,20 +166,190 @@ Trans Transiciones::GetTransicion(char estado, char simbolo)
 //  012345
 void Transiciones::Turing(std::string& cinta, std::string& entrada, int& pos, int& pose)
 {
-	char simbolo = cinta[pos];									// simbolo recoje el quinto elemento de la cinta, es decir el primer elemento de la entrada
-	Trans tm = GetTransicion(GetEstado(pose),simbolo);				// recoje exactamente la transicion necesaria para realizar las operaciones
+	char simbolo = Cinta[Pos];									// simbolo recoje el quinto elemento de la cinta, es decir el primer elemento de la entrada
+	Trans tm = GetTransicion(GetEstado(Pose),simbolo);				// recoje exactamente la transicion necesaria para realizar las operaciones
 	if (tm.Nextestado == ' ')
 		return;		// En caso que el siguiente estado esta vacio, retorna la funcion
 	if (tm.Instruccion != 'H')
 	{
-		cinta[pos] = tm.Nextsimbolo;
+		Cinta[Pos] = tm.Nextsimbolo;
 		if (tm.Instruccion == 'R')
-			pos++;
+			Pos++;
 		else if (tm.Instruccion	== 'L')
-			pos--;
+			Pos--;
 		char nextestado = tm.Nextestado;
-		pose = SearchPosE(nextestado);
+		Pose = SearchPosE(nextestado);
 	}
+}
+
+void Transiciones::Entrada(std::string entrada)
+{
+	Cinta = "";
+	Pos = 10;
+	Pose = 0;
+	for(int i = 1; i <= 20; i++)
+	{
+		Cinta += GetEndInstr();
+	}
+	Cinta.insert(10, entrada.c_str());
+}
+
+void Transiciones::MostrarCinta(TCanvas* canvas)
+{
+	int x = 100;
+	int y = 200;
+	int x2 = 150;
+	int y2 = 240;
+	for (int i = 3; i < 18; i++)
+	{
+		if (i == 11)
+		{
+			x2 += 5;
+			y -= 5;
+			y2 += 5;
+		}
+		canvas->Rectangle(x, y, x2, y2);
+		char carac = Cinta[i];
+		AnsiString entra(carac);
+
+		int x3 = (x + x2) / 2 - canvas->TextWidth(entra);
+		int y3 = (y + y2) / 2 - canvas->TextHeight(entra);
+		canvas->TextOut(x3, y3, entra);
+        if (i == 11)
+		{
+            x += 5;
+			y += 5;
+			y2 -= 5;
+		}
+		x += 50;
+		x2 += 50;
+	}
+}
+
+void Transiciones::MoverCinta(TCanvas* canvas)
+{
+	int x = 100;
+	int y = 200;
+	int x2 = 150;
+	int y2 = 240;
+	/*
+	int visualStart = Pos - 10;
+	if (visualStart < 0) visualStart = 0;
+	if (visualStart > Cinta.length() - 20) visualStart = Cinta.length() - 20;
+	for (int i = 0; i < 15; i++)
+	{
+		canvas->Rectangle(x, y, x2, y2);
+		if (visualStart + i < Cinta.length())
+		{
+			char simbolo = Cinta[visualStart + i];
+			AnsiString symbolStr(simbolo);
+			int x3 = (x + x2) / 2 - canvas->TextWidth(symbolStr);
+			int y3 = (y + y2) / 2 - canvas->TextHeight(symbolStr);
+			canvas->TextOut(x3, y3, symbolStr);
+		}
+		x += 50;
+		x2 += 50;
+	}
+	*/
+
+	for (int i = Pos - 7; i < 15 + Pos - 7; i++)
+	{
+		if (i == 11 + Pos - 10)
+		{
+			x2 += 5;
+			y -= 5;
+			y2 += 5;
+		}
+		canvas->Rectangle(x, y, x2, y2);
+		char carac = Cinta[i];
+		AnsiString entra(carac);
+		int x3 = (x + x2) / 2 - canvas->TextWidth(entra);
+		int y3 = (y + y2) / 2 - canvas->TextHeight(entra);
+		canvas->TextOut(x3, y3, entra);
+        if (i == 11 + Pos - 10)
+		{
+            x += 5;
+            y += 5;
+			y2 -= 5;
+		}
+		x += 50;
+		x2 += 50;
+	}
+	/*
+    void __fastcall TForm2::Button3Click(TObject *Sender)
+{
+	// Ejecutar una transición de la máquina de Turing
+	t.Turing(cinta, entrada, ini, poseini);
+	Edit1->Text = cinta.c_str();
+
+	// Borrar el contenido anterior del Canvas
+	Canvas->Brush->Color = clWhite; // Color de fondo blanco
+    Canvas->FillRect(ClientRect); // Borrar el Canvas
+
+	// Dimensiones de los rectángulos que representan los cuadros de la cinta
+	const int boxWidth = 50;
+	const int boxHeight = 40;
+
+	// Posición inicial para dibujar los rectángulos
+	int startX = 240;
+	int startY = 120;
+
+    // Calcula el inicio de la visualización de la cinta basada en la posición de la cabeza de lectura/escritura
+    int visualStart = ini-5 ; // Ajusta este valor para centrar la cabeza de lectura/escritura
+    if (visualStart < 0) visualStart = 0;
+    if (visualStart > cinta.length() - 14) visualStart = cinta.length() - 14; // Asegúrate de no exceder los límites
+
+	for (int i = 0; i < 14; i++) {
+        Canvas->Rectangle(startX, startY, startX + boxWidth, startY + boxHeight);
+
+        // Asegúrate de no exceder los límites de la cinta
+        if (visualStart + i < cinta.length()) {
+            char symbol = cinta[visualStart + i];
+
+            // Dibujar el símbolo en el centro del rectángulo
+            AnsiString symbolStr(symbol);
+            int textX = startX + (boxWidth - Canvas->TextWidth(symbolStr)) / 2;
+            int textY = startY + (boxHeight - Canvas->TextHeight(symbolStr)) / 2;
+            Canvas->TextOut(textX, textY, symbolStr);
+		}
+
+        // Mover a la siguiente posición de dibujo
+        startX += boxWidth;
+    }
+
+	// Mueve la cabeza de lectura/escritura si la transición fue a la derecha o izquierda
+    if (ini >= 0 && ini < cinta.length()) {
+		// Dibuja un marcador o destaca el cuadro actual de la cabeza de lectura/escritura
+        //Canvas->Pen->Width=5;
+		Canvas->Brush->Color = clRed;
+
+		Canvas->FrameRect(Rect(240 + (ini - visualStart) * boxWidth, startY, 240 + (ini - visualStart + 1) * boxWidth, startY + boxHeight));
+	   // Canvas->Brush->Color = clWhite; // Restablece el color del pincel
+	}
+
+	//ESTO NO SIRVE DE PAUL---------------------------------------------------------------------------
+/t.Turing( cinta,  entrada,ini,  poseini); //CINTA ,ENTRADA,POS,POSE(CINTA,LOS NUMEROS DE LA ENTRADA, 5,0 )
+ Edit1->Text=cinta.c_str();
+  int x=240;
+int y=120;   int x2=290;
+int y2=160;
+ for(int i=0;i<14;i++)
+   {
+	Canvas->Rectangle(x,y,x2,y2);
+	  // Introduce el carácter correspondiente en el rectángulo
+		char  cadena= cinta[i];
+		AnsiString entra(cadena); // Convierto el char a AnsiString
+		//formula para poder entrar el num que entra
+		int x3 = (x + x2) / 2 - Canvas->TextWidth(entra) / 2; // Centrando el texto en el rectángulo
+		int y3 = (y + y2) / 2 - Canvas->TextHeight(entra) / 2;
+		Canvas->TextOut(x3, y3, entra);//aqui va escribiendo en los cuadros
+   x=x+50;
+   x2=x2+50;
+   //x3-40;
+   }  /
+}
+	*/
+
 }
 
 
