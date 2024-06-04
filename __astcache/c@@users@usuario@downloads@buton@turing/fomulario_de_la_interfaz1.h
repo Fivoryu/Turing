@@ -48,6 +48,9 @@ __published:	// IDE-managed Components
 	TButton *DEstado;
 	TButton *DSimbolo;
 	TButton *DTransiciones;
+	TButton *MEstado;
+	TButton *MSimbolo;
+	TButton *MTransiciones;
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button4Click(TObject *Sender);
@@ -66,6 +69,9 @@ __published:	// IDE-managed Components
 	void __fastcall DEstadoClick(TObject *Sender);
 	void __fastcall DSimboloClick(TObject *Sender);
 	void __fastcall DTransicionesClick(TObject *Sender);
+	void __fastcall MEstadoClick(TObject *Sender);
+	void __fastcall MSimboloClick(TObject *Sender);
+	void __fastcall MTransicionesClick(TObject *Sender);
 private:
 	// User declarations
     Transiciones t;

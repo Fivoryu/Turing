@@ -56,6 +56,8 @@ public:
 	void Eliminar(int f, int c, Trans valor);
 	void EliminarEstado(char estado);
 	void EliminarSimbolo(char simbolo);
+	int GetFila(char estado);
+	int GetColumna(char simbolo);
 	Trans Tipo_Elemento(int f, int c);
 	void Definir_Valor_Repetido(Trans valor);
 private:

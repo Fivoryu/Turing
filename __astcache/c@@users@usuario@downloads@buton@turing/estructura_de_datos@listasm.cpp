@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 
 #pragma hdrstop
 
@@ -142,14 +142,14 @@ void ListaSM::Modifica(int dir, char ele)
 	else throw new Exception("Lista vacia");
 }
 
-char ListaSM::Localizar(char ele)
+int ListaSM::Localizar(char ele)
 {
     int aux = PtrElementos;
 	while (aux != -1)
 	{
 		if (csMemoria.Obtener_Dato(aux, "->elemento") == ele)
 			return aux;
-		aux = csMemoria.Obtener_Dato(aux, "->elemento");
+		aux = csMemoria.Obtener_Dato(aux, "->sig");
 	}
 	return -1;
 }

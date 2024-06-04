@@ -26,13 +26,16 @@ public:
 	void SetEstado(char estado);
 	char GetEstado(int pos);
 	void DeleteEstado(char estado);
+	void ModificarEstado(std::string mod);
 	void SetSimbolo(char simbolo);
 	char GetSimbolo(int pos);
 	void DeleteSimbolo(char simbolo);
+	void ModificarSimbolo(std::string mod);
 	void SetEndInstr(char end) { EndInstruction = end; }
 	char GetEndInstr() { return EndInstruction; }
 	void SetTransicion(char estado, char simbolo, char nextestado, char nextsimbolo, char instruccion);
 	void DeleteTransicion(char estado, char simbolo, char nextestado, char nextsimbolo, char instruccion);
+	void ModTransicion(char estado, char simbolo, char nextestado, char nextsimbolo, char instruccion);
 	int GetMaxePos() { return epos; }
 	int GetMaxsPos() {return spos; }
 	int SearchPosE(char estado);

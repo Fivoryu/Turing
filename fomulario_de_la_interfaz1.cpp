@@ -189,7 +189,7 @@ void __fastcall TForm1::CargarClick(TObject *Sender)
 
 void __fastcall TForm1::DEstadoClick(TObject *Sender)
 {
-    AnsiString e = Edit1->Text;
+	AnsiString e = Edit1->Text;
 	std::string au = e.c_str();
 	t.DeleteEstado(au[0]);
 	Edit1->Text = "";
@@ -198,7 +198,7 @@ void __fastcall TForm1::DEstadoClick(TObject *Sender)
 
 void __fastcall TForm1::DSimboloClick(TObject *Sender)
 {
-    AnsiString e = Edit2->Text;
+	AnsiString e = Edit2->Text;
 	std::string au = e.c_str();
 	t.DeleteSimbolo(au[0]);
 	Edit2->Text = "";
@@ -207,12 +207,46 @@ void __fastcall TForm1::DSimboloClick(TObject *Sender)
 
 void __fastcall TForm1::DTransicionesClick(TObject *Sender)
 {
-    AnsiString e = ComboBox1->Text;
+	AnsiString e = ComboBox1->Text;
 	AnsiString s = ComboBox2->Text;
 	AnsiString ne = ComboBox3->Text;
 	AnsiString ns = ComboBox4->Text;
 	AnsiString i = ComboBox5->Text;
 	t.DeleteTransicion(e[1], s[1], ne[1], ns[1], i[1]);
+	ComboBox1->Text = "";
+	ComboBox2->Text = "";
+	ComboBox3->Text = "";
+	ComboBox4->Text = "";
+	ComboBox5->Text = "";
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::MEstadoClick(TObject *Sender)
+{
+    AnsiString e = Edit1->Text;
+	std::string au = e.c_str();
+	t.ModificarEstado(au);
+	Edit1->Text = "";
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::MSimboloClick(TObject *Sender)
+{
+    AnsiString e = Edit2->Text;
+	std::string au = e.c_str();
+	t.ModificarSimbolo(au);
+	Edit2->Text = "";
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::MTransicionesClick(TObject *Sender)
+{
+    AnsiString e = ComboBox1->Text;
+	AnsiString s = ComboBox2->Text;
+	AnsiString ne = ComboBox3->Text;
+	AnsiString ns = ComboBox4->Text;
+	AnsiString i = ComboBox5->Text;
+	t.ModTransicion(e[1], s[1], ne[1], ns[1], i[1]);
 	ComboBox1->Text = "";
 	ComboBox2->Text = "";
 	ComboBox3->Text = "";

@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 
 #pragma hdrstop
 
@@ -135,6 +135,26 @@ void MatrizDispersaTrans::EliminarSimbolo(char simbolo)
 	}
 }
 
+int MatrizDispersaTrans::GetFila(char estado)
+{
+	for (int i = 0; i < NT; i++)
+	{
+		if (Vd[i].Estado == estado)
+			return Vf[i];
+	}
+	return -1;
+}
+
+int MatrizDispersaTrans::GetColumna(char simbolo)
+{
+    for (int i = 0; i < NT; i++)
+	{
+		if (Vd[i].Simbolo == simbolo)
+			return Vc[i];
+	}
+	return -1;
+}
+
 
 Trans MatrizDispersaTrans::Tipo_Elemento(int f, int c)
 {
@@ -145,7 +165,8 @@ Trans MatrizDispersaTrans::Tipo_Elemento(int f, int c)
 			return Vd[Lug];
 		else
 			return repe;
-    }
+	}
+    return repe;
 }
 
 void MatrizDispersaTrans::Definir_Valor_Repetido(Trans valor)

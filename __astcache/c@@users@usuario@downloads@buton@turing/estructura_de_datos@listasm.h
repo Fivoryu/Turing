@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 
 #ifndef ListaSMH
 #define ListaSMH
@@ -27,7 +27,7 @@ public:
 	void Modifica(int dir, char ele);
 	void Mostrar(TCanvas* canvas);
 	/////////////////////////////////////////////////
-	char Localizar(char ele);
+	int Localizar(char ele);
 	void EliminarDato(char ele);
 	void Anular();
 };

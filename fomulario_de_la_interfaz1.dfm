@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 340
   Top = 100
   Caption = 'Form1'
-  ClientHeight = 665
-  ClientWidth = 1021
+  ClientHeight = 664
+  ClientWidth = 1017
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -218,6 +218,33 @@ object Form1: TForm1
     Caption = 'DTransiciones'
     TabOrder = 23
     OnClick = DTransicionesClick
+  end
+  object MEstado: TButton
+    Left = 127
+    Top = 136
+    Width = 75
+    Height = 25
+    Caption = 'MEstado'
+    TabOrder = 24
+    OnClick = MEstadoClick
+  end
+  object MSimbolo: TButton
+    Left = 295
+    Top = 136
+    Width = 75
+    Height = 25
+    Caption = 'MSimbolo'
+    TabOrder = 25
+    OnClick = MSimboloClick
+  end
+  object MTransiciones: TButton
+    Left = 736
+    Top = 184
+    Width = 91
+    Height = 25
+    Caption = 'MTransiciones'
+    TabOrder = 26
+    OnClick = MTransicionesClick
   end
   object OpenTextFileDialog1: TOpenTextFileDialog
     Left = 48

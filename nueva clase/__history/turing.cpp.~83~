@@ -12,7 +12,7 @@ extern CSMemoria csMemoria;
 
 void eliminarComasEspacios(std::string& cadena)
 {
-	// Eliminar los espacios usando la función erase y remove_if
+	// Eliminar los espacios usando la funcion erase y remove_if
 	cadena.erase(std::remove_if(cadena.begin(), cadena.end(), [](char c) { return std::isspace(c); }), cadena.end());
 
 	// Eliminar las comas
@@ -23,6 +23,7 @@ void eliminarComasEspacios(std::string& cadena)
 Transiciones::Transiciones()
 {
 	epos = 0;   spos = 0;
+	Pos = 10; Pose = 0;
 	Estado.Crear();
 	Simbolo.Crear();
 	trans.Crear();
@@ -37,7 +38,7 @@ void Transiciones::SetEstado(char estado)
 			Estado.Insertar(Estado.Primero(), estado);
 		else
 		{
-			if (GetEstado(SearchPosE(estado)) != ' ')
+			if (GetEstado(SearchPosE(estado)) == ' ')
 				Estado.Insertar(Estado.Fin(), estado);
 			else
 				epos--;
@@ -78,12 +79,12 @@ void Transiciones::DeleteEstado(char estado)
 
 void Transiciones::ModificarEstado(std::string mod)
 {
-	if (mod.length() < 4)
+	if (mod.length() <= 4)
 	{
-		std::string copia=mod.substr(0,2);
+		std::string copia=mod.substr(1,2);
 		std::string aux = mod;
 		if (copia=="->")
-			mod.erase(0,2);
+			mod.erase(1,2);
 		else
 		{
 			throw new Exception("-> no anadida");
@@ -103,7 +104,7 @@ void Transiciones::SetSimbolo(char simbolo)
 			Simbolo.Insertar(Simbolo.Primero(), simbolo);
 		else
 		{
-			if (GetSimbolo(SearchPosS(simbolo)) != ' ')
+			if (GetSimbolo(SearchPosS(simbolo)) == ' ')
 				Simbolo.Insertar(Simbolo.Fin(), simbolo);
 			else
 				spos--;
@@ -144,12 +145,12 @@ void Transiciones::DeleteSimbolo(char simbolo)
 
 void Transiciones::ModificarSimbolo(std::string mod)
 {
-    if (mod.length() < 4)
+    if (mod.length() <= 4)
 	{
-		std::string copia=mod.substr(0,2);
+		std::string copia=mod.substr(1,2);
 		std::string aux = mod;
 		if (copia=="->")
-			mod.erase(0,2);
+			mod.erase(1,2);
 		else
 		{
 			throw new Exception("-> no anadida");
@@ -175,6 +176,17 @@ void Transiciones::DeleteTransicion(char estado, char simbolo, char nextestado, 
 	int PosS = SearchPosS(simbolo);
 	Trans T = Trans(estado, simbolo, nextestado, nextsimbolo, instruccion);
 	trans.Eliminar(PosE, PosS, T);
+}
+
+void Transiciones::ModTransicion(char estado, char simbolo, char nextestado, char nextsimbolo, char instruccion)
+{
+	int f = trans.GetFila(estado);
+	int c = trans.GetColumna(simbolo);
+	if (trans.Posicion(f,c) != -1)
+	{
+		SetTransicion(estado, simbolo, nextestado, nextsimbolo, instruccion);
+	}
+	else throw new Exception("No existe la transicion");
 }
 
 
@@ -388,11 +400,16 @@ void Transiciones::Load(TOpenTextFileDialog* open)
 		AnsiString aux = filename.c_str();
 		file = aux.c_str();
 	}
-	Transiciones();
 	
 	ifstream f(file.c_str(), ios::in);
 	if (!f.fail())
 	{
+		epos = 0;   spos = 0;
+		Pos = 10; Pose = 0;
+		Estado.Crear();
+		Simbolo.Crear();
+		trans.Crear();
+		csMemoria.Crear();
 		std::string linea;
 		std::getline(f,linea);
 		eliminarComasEspacios(linea);
@@ -418,8 +435,8 @@ void Transiciones::Load(TOpenTextFileDialog* open)
 			eliminarComasEspacios(linea);
 			if (linea.length() > 0)
 			{	
-                SetTransicion(linea[0], linea[1], linea[2], linea[3], linea[4]);
-            }
-        }
+				SetTransicion(linea[0], linea[1], linea[2], linea[3], linea[4]);
+			}
+		}
 	}
 }

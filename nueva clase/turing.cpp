@@ -12,7 +12,7 @@ extern CSMemoria csMemoria;
 
 void eliminarComasEspacios(std::string& cadena)
 {
-	// Eliminar los espacios usando la función erase y remove_if
+	// Eliminar los espacios usando la funcion erase y remove_if
 	cadena.erase(std::remove_if(cadena.begin(), cadena.end(), [](char c) { return std::isspace(c); }), cadena.end());
 
 	// Eliminar las comas
@@ -23,19 +23,29 @@ void eliminarComasEspacios(std::string& cadena)
 Transiciones::Transiciones()
 {
 	epos = 0;   spos = 0;
+	Pos = 10; Pose = 0;
 	Estado.Crear();
 	Simbolo.Crear();
 	trans.Crear();
 	csMemoria.Crear();
 }
+
 void Transiciones::SetEstado(char estado)
 {
-	if (Estado.Vacia())
-		Estado.Insertar(Estado.Primero(), estado);
-	else
-		Estado.Insertar(Estado.Fin(), estado);
-	epos++;
-	trans.Dimensionar(epos, spos);
+	if (estado != ' ')
+	{
+		if (Estado.Vacia())
+			Estado.Insertar(Estado.Primero(), estado);
+		else
+		{
+			if (GetEstado(SearchPosE(estado)) == ' ')
+				Estado.Insertar(Estado.Fin(), estado);
+			else
+				epos--;
+		}
+		epos++;
+		trans.Dimensionar(epos, spos);
+	}
 }
 
 char Transiciones::GetEstado(int pos)
@@ -63,18 +73,70 @@ void Transiciones::DeleteEstado(char estado)
 		trans.DimensionarFila(pos);
 		Estado.EliminarDato(estado);
 		epos--;
-		trans.Dimensionar(epos, spos);	
+		trans.Dimensionar(epos, spos);
 	}
+}
+
+void Transiciones::ModificarEstado(std::string mod)
+{
+	if (mod.length() <= 4 && !Estado.Vacia())
+	{
+		std::string copia=mod.substr(1,2);
+		std::string aux = mod;
+		if (copia=="->")
+			mod.erase(1,2);
+		else
+		{
+			throw new Exception("-> no anadida");
+			return;
+		}
+
+		if (GetEstado(SearchPosE(mod[1])) == ' ')
+		{
+			Estado.Modifica(Estado.Localizar(mod[0]), mod[1]);
+			int f = SearchPosE(mod[1]);
+			for (int i = 0; i < spos; i++)
+			{
+				for (int j = 0; j < spos; j++)
+				{
+					Trans t = trans.Tipo_Elemento(i,j);
+					if (t.Nextsimbolo != ' ')
+					{
+						char ne = t.Nextestado;
+						if ((t.Estado == mod[0]) || (t.Nextestado == mod[0]))
+						{
+							if (t.Estado == mod[0])
+								t.Estado = mod[1];
+							if (t.Nextestado == mod[0])
+								t.Nextestado = mod[1];
+							trans.Poner(i, j, t);
+						}
+					}
+				}
+			}
+		}
+		else
+			throw new Exception("Error al intentar estados ya existentes");
+	}
+	else throw new Exception("Rango excedido al modificar");
 }
 
 void Transiciones::SetSimbolo(char simbolo)
 {
-	if (Simbolo.Vacia())
-		Simbolo.Insertar(Simbolo.Primero(), simbolo);
-	else
-		Simbolo.Insertar(Simbolo.Fin(), simbolo);
-	spos++;
-    trans.Dimensionar(epos, spos);
+	if (simbolo != ' ')
+	{
+		if (Simbolo.Vacia())
+			Simbolo.Insertar(Simbolo.Primero(), simbolo);
+		else
+		{
+			if (GetSimbolo(SearchPosS(simbolo)) == ' ')
+				Simbolo.Insertar(Simbolo.Fin(), simbolo);
+			else
+				spos--;
+		}
+		spos++;
+		trans.Dimensionar(epos, spos);
+	}
 }
 
 char Transiciones::GetSimbolo(int pos)
@@ -106,6 +168,50 @@ void Transiciones::DeleteSimbolo(char simbolo)
 	}
 }
 
+void Transiciones::ModificarSimbolo(std::string mod)
+{
+	if (mod.length() <= 4 && !Simbolo.Vacia())
+	{
+		std::string copia=mod.substr(1,2);
+		std::string aux = mod;
+		if (copia=="->")
+			mod.erase(1,2);
+		else
+		{
+			throw new Exception("-> no anadida");
+			return;
+		}
+
+		if (GetSimbolo(SearchPosS(mod[1])) == ' ')
+		{
+			Simbolo.Modifica(Simbolo.Localizar(mod[0]), mod[1]);
+			int c = SearchPosS(mod[1]);
+			for (int i = 0; i < epos; i++)
+			{
+				for (int j = 0; j < spos; j++)
+				{
+					Trans t = trans.Tipo_Elemento(i,j);
+					if (t.Nextestado != ' ')
+					{
+						char ne = t.Nextsimbolo;
+						if ((t.Simbolo == mod[0]) || (t.Nextsimbolo == mod[0]))
+						{
+							if (t.Simbolo == mod[0])
+								t.Simbolo = mod[1];
+							if (t.Nextsimbolo == mod[0])
+								t.Nextsimbolo = mod[1];
+							trans.Poner(i, j, t);
+						}
+					}
+				}
+			}
+		}
+		else
+			throw new Exception("Error al intentar estados ya existentes");
+	}
+	else throw new Exception("Rango excedido al modificar");
+}
+
 void Transiciones::SetTransicion(char estado, char simbolo, char nextestado, char nextsimbolo, char instruccion)
 {
 	int PosE = SearchPosE(estado);
@@ -120,6 +226,17 @@ void Transiciones::DeleteTransicion(char estado, char simbolo, char nextestado, 
 	int PosS = SearchPosS(simbolo);
 	Trans T = Trans(estado, simbolo, nextestado, nextsimbolo, instruccion);
 	trans.Eliminar(PosE, PosS, T);
+}
+
+void Transiciones::ModTransicion(char estado, char simbolo, char nextestado, char nextsimbolo, char instruccion)
+{
+	int f = trans.GetFila(estado);
+	int c = trans.GetColumna(simbolo);
+	if (trans.Posicion(f,c) != -1)
+	{
+		SetTransicion(estado, simbolo, nextestado, nextsimbolo, instruccion);
+	}
+	else throw new Exception("No existe la transicion");
 }
 
 
@@ -333,11 +450,16 @@ void Transiciones::Load(TOpenTextFileDialog* open)
 		AnsiString aux = filename.c_str();
 		file = aux.c_str();
 	}
-	Transiciones();
 	
 	ifstream f(file.c_str(), ios::in);
 	if (!f.fail())
 	{
+		epos = 0;   spos = 0;
+		Pos = 10; Pose = 0;
+		Estado.Crear();
+		Simbolo.Crear();
+		trans.Crear();
+		csMemoria.Crear();
 		std::string linea;
 		std::getline(f,linea);
 		eliminarComasEspacios(linea);
@@ -363,8 +485,8 @@ void Transiciones::Load(TOpenTextFileDialog* open)
 			eliminarComasEspacios(linea);
 			if (linea.length() > 0)
 			{	
-                SetTransicion(linea[0], linea[1], linea[2], linea[3], linea[4]);
-            }
-        }
+				SetTransicion(linea[0], linea[1], linea[2], linea[3], linea[4]);
+			}
+		}
 	}
 }
